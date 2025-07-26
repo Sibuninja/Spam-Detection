@@ -3,23 +3,19 @@ import joblib
 
 app = Flask(__name__)
 
-# Load the trained model
-model = joblib.load('spam_model.pkl')  # ✅ Make sure this file exists in the same folder
+# Load model and vectorizer
+model = joblib.load('spam_model.pkl')
+cv = joblib.load('vectorizer.pkl')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        message = request.form.get('message')  # Get input from form
-        output = model.predict([message])      # Predict using model
-
-        # Format output
-        if output == [0]:
-            result = "This Message is Not a SPAM Message."
-        else:
-            result = "This Message is a SPAM Message."
-
-        return render_template('index.html', result=result, message=message)
-
+        message = request.form.get('message')
+        if message:
+            data = cv.transform([message])
+            output = model.predict(data)
+            result = "This Message is a SPAM Message." if output[0] == 1 else "This Message is Not a SPAM Message."
+            return render_template('index.html', result=result, message=message)
     return render_template('index.html')
 
 if __name__ == '__main__':

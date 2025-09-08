@@ -37,3 +37,5 @@ joblib.dump(model, 'spam_model.pkl')
 joblib.dump(cv, 'vectorizer.pkl')
 
 print("✅ Model and vectorizer saved successfully!")
+
+ #You won $1000 cash prize! Claim now! -> Spam Message

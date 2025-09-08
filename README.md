@@ -15,6 +15,11 @@ This is a simple Python-based Spam Detection Web App using **Machine Learning (N
 
 ---
 
+## 🖼 Interface Preview
+![Interface Demo](assets/InterfaceDemo.png)
+
+---
+
 ## 🧠 Tech Stack
 
 - Python 3.x
